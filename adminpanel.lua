@@ -1372,13 +1372,13 @@ end)
 local tab4 = win:Tab("Farming", "http://www.roblox.com/asset/?id=6023426915")
 
 local PlantRange
-local PlantDistance = tab4:Slider("Select Distance for AutoPlant", "With this you can establish a distance", 5, 38, 16, function(tra)
-    PlantRange = tra
+local PlantDistance = tab4:Slider("Select Distance for AutoPlant", "With this you can establish a distance", 5, 38, 16, function(t)
+    PlantRange = t
 end)
 
 local FruitPlant
-local FruitDrop = tab4:Dropdown("Select Fruit", {"Bloodfruit", "Pumpkin", "Strangefruit", "Oddberry", "Lemon", "Apple", "Coconut", "Jelly", "Sunfruit", "Bluefruit", "Berry", "Orange", "Cloudberry", "Banana", "Barley", "Corn", "Prickly Pear", "Strawberry"}, function(tpa)
-    FruitPlant = tpa
+local FruitDrop = tab4:Dropdown("Select Fruit", {"Bloodfruit", "Pumpkin", "Strangefruit", "Oddberry", "Lemon", "Apple", "Coconut", "Jelly", "Sunfruit", "Bluefruit", "Berry", "Orange", "Cloudberry", "Banana", "Barley", "Corn", "Prickly Pear", "Strawberry"}, function(t)
+    FruitPlant = t
 end)
 
 getgenv().autofarmplant = false
@@ -1392,7 +1392,7 @@ tab4:Toggle("AutoPlant", "This will plant the selected fruit in the plant boxes 
                     spawn(function()
                         local n = game.Players.LocalPlayer.Character.HumanoidRootPart
                         for b, c in pairs(game:GetService("Workspace").Deployables:GetChildren()) do
-                            --if not c:FindFirstChild(FruitPlant) then
+                            if not c:FindFirstChild(FruitPlant) then
                                 if (n.Position - c:FindFirstChildWhichIsA("BasePart").Position).Magnitude < PlantRange then
                                     local T = {
                                         [1] = c,
@@ -1401,7 +1401,7 @@ tab4:Toggle("AutoPlant", "This will plant the selected fruit in the plant boxes 
                                     game:GetService("ReplicatedStorage").Events.InteractStructure:FireServer(unpack(T))
                                     wait(0.1)
                                 end
-                            --end
+                            end
                         end
                     end)
                 end)
