@@ -1,7 +1,7 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt"))()
 _G.closeBind = Enum.KeyCode.C
 
-local win = lib:Window("Mod Panel", "YouRank: Creator", Color3.fromRGB(255, 110, 48), _G.closeBind)
+local win = lib:Window("Mod Panel", "Your Rank: Creator", Color3.fromRGB(255, 110, 48), _G.closeBind)
 local tab1 = win:Tab("Esp", "http://www.roblox.com/asset/?id=6023426915")
 
 
@@ -1370,6 +1370,7 @@ tab3:Toggle("Auto Teleport Selected Position (10)", "It will teleport through th
 end)
 
 local tab4 = win:Tab("Farming", "http://www.roblox.com/asset/?id=6023426915")
+
 local PlantRange
 local PlantDistance = tab4:Slider("Select Distance for AutoPlant", "With this you can establish a distance", 5, 38, 16, function(tra)
     PlantRange = tra
@@ -1391,7 +1392,7 @@ tab4:Toggle("AutoPlant", "This will plant the selected fruit in the plant boxes 
                     spawn(function()
                         local n = game.Players.LocalPlayer.Character.HumanoidRootPart
                         for b, c in pairs(game:GetService("Workspace").Deployables:GetChildren()) do
-                            if not c:FindFirstChild(FruitPlant) then
+                            --if not c:FindFirstChild(FruitPlant) then
                                 if (n.Position - c:FindFirstChildWhichIsA("BasePart").Position).Magnitude < PlantRange then
                                     local T = {
                                         [1] = c,
@@ -1400,7 +1401,7 @@ tab4:Toggle("AutoPlant", "This will plant the selected fruit in the plant boxes 
                                     game:GetService("ReplicatedStorage").Events.InteractStructure:FireServer(unpack(T))
                                     wait(0.1)
                                 end
-                            end
+                            --end
                         end
                     end)
                 end)
